@@ -1,1 +1,1 @@
-yg translator itu jadi file utama, Designnya pakek itu
+yg folder "Translator" itu jadi file utama, Designnya pakek itu
