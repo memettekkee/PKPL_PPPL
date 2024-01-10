@@ -63,3 +63,16 @@ C:\Users\Mamet\source\repos\Translate-Java-Final\obj\Debug\xtUML1.csproj.CoreCom
 C:\Users\Mamet\source\repos\Translate-Java-Final\obj\Debug\xtUML1.csproj.CopyComplete
 C:\Users\Mamet\source\repos\Translate-Java-Final\obj\Debug\xtUML1.exe
 C:\Users\Mamet\source\repos\Translate-Java-Final\obj\Debug\xtUML1.pdb
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\bin\Debug\xtUML1.exe.config
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\bin\Debug\xtUML1.exe
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\bin\Debug\xtUML1.pdb
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\bin\Debug\Newtonsoft.Json.dll
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\bin\Debug\Newtonsoft.Json.xml
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.csproj.AssemblyReference.cache
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.Form1.resources
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.Properties.Resources.resources
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.csproj.GenerateResource.cache
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.csproj.CoreCompileInputs.cache
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.csproj.CopyComplete
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.exe
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translate-Java-Final\obj\Debug\xtUML1.pdb
