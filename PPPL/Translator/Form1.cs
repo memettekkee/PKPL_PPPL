@@ -378,7 +378,7 @@ namespace xtUML1
             // translate jika lolos parsing
             // tampilkan hasil translate di textBox3
 
-            if (isBtnParseClicked)
+            //if (isBtnParseClicked)
             {
                 try
                 {
@@ -398,10 +398,10 @@ namespace xtUML1
                     MessageBox.Show($"Error generating Java code: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Please click btnParse first.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //else
+            //{
+            //    MessageBox.Show("Please click btnParse first.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
 
 
         }
@@ -537,11 +537,11 @@ namespace xtUML1
             //if (dataType != "state")
             if (attribute.data_type != "state")
             {
-                sourceCodeBuilder.AppendLine($"    private {dataType} {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {dataType} {attribute.attribute_name};");
             }
             else
             {
-                sourceCodeBuilder.AppendLine($"    private {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {attribute.attribute_name};");
             }
 
         }
@@ -570,7 +570,7 @@ namespace xtUML1
                 // Adjust data types as needed
                 string dataType = MapDataType(attribute.data_type);
 
-                sourceCodeBuilder.AppendLine($"     private {dataType} {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {dataType} {attribute.attribute_name};");
             }
 
             // Check if associatedClass.@class is not null before iterating
@@ -687,7 +687,7 @@ namespace xtUML1
                 //if (attribute.attribute_name != "status")
                 if (attribute.data_type != "state")
                 {
-                    sourceCodeBuilder.AppendLine($"        this.{attribute.attribute_name} = {attribute.attribute_name};");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{attribute.attribute_name} = {attribute.attribute_name};");
                 }
             }
             // Handle the "state" datatype separately outside the loop
@@ -700,11 +700,11 @@ namespace xtUML1
                     int lastDotIndex = stateAttribute.default_value.LastIndexOf('.');
                     // Replace "status" with "state" and "aktif" with "active"
                     string stringValue = stateAttribute.default_value.Substring(lastDotIndex + 1);
-                    sourceCodeBuilder.AppendLine($"        this.{stateAttribute.attribute_name} = \"{stringValue}\";");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{stateAttribute.attribute_name} = \"{stringValue}\";");
                 }
             }
 
-            sourceCodeBuilder.AppendLine("}");
+            sourceCodeBuilder.AppendLine("\t}");
         }
 
         private void GenerateGetter(JsonData.Attribute1 getter)
@@ -713,9 +713,9 @@ namespace xtUML1
             if (getter.data_type != "state")
             {
                 string dataType = MapDataType(getter.data_type);
-                sourceCodeBuilder.AppendLine($"      public {dataType} get{getter.attribute_name}() {{"); // ini belom diubah
-                sourceCodeBuilder.AppendLine($"        this.{getter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic {dataType} get{getter.attribute_name}() {{"); // ini belom diubah
+                sourceCodeBuilder.AppendLine($"\t\tthis.{getter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
 
         }
@@ -726,9 +726,9 @@ namespace xtUML1
             if (setter.data_type != "state")
             {
                 string dataType = MapDataType(setter.data_type);
-                sourceCodeBuilder.AppendLine($"      public void set{setter.attribute_name}({dataType} {setter.attribute_name}) {{"); // ini ( String get() ) nya belom jadi
-                sourceCodeBuilder.AppendLine($"        this.{setter.attribute_name} = {setter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic void set{setter.attribute_name}({dataType} {setter.attribute_name}) {{"); // ini ( String get() ) nya belom jadi
+                sourceCodeBuilder.AppendLine($"\t\tthis.{setter.attribute_name} = {setter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
 
         }
@@ -737,9 +737,9 @@ namespace xtUML1
         {
             if (getstate.data_type == "state")
             {
-                sourceCodeBuilder.AppendLine($"     public string GetState() {{");  // bagian ini nya belom
-                sourceCodeBuilder.AppendLine($"       this.state;");
-                sourceCodeBuilder.AppendLine($"}}\n");
+                sourceCodeBuilder.AppendLine($"\tpublic string GetState() {{");  // bagian ini nya belom
+                sourceCodeBuilder.AppendLine($"\t\tthis.state;");
+                sourceCodeBuilder.AppendLine($"\t}}\n");
             }
         }
 
@@ -754,7 +754,7 @@ namespace xtUML1
                     {
                         string methodName = $"{Char.ToUpper(eventName[0])}{eventName.Substring(1)}";
 
-                        sourceCodeBuilder.AppendLine($"     public void {methodName}() {{");
+                        sourceCodeBuilder.AppendLine($"\tpublic void {methodName}() {{");
 
                         if (state.transitions != null)
                         {
@@ -767,14 +767,14 @@ namespace xtUML1
 
                                     if (!string.IsNullOrEmpty(targetStateId))
                                     {
-                                        sourceCodeBuilder.AppendLine($"       this.SetStateById({targetStateId});");
+                                        sourceCodeBuilder.AppendLine($"\t\tthis.SetStateById({targetStateId});");
                                     }
                                 }
                             }
                         }
 
-                        sourceCodeBuilder.AppendLine($"       this.{state.state_name} = \"{state.state_value}\";");
-                        sourceCodeBuilder.AppendLine($"     }}\n");
+                        sourceCodeBuilder.AppendLine($"\t\tthis.{state.state_name} = \"{state.state_value}\";");
+                        sourceCodeBuilder.AppendLine($"\t}}\n");
                     }
                 }
 

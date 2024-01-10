@@ -50,3 +50,16 @@ C:\Users\Mamet\source\repos\Translator\obj\Debug\xtUML1.csproj.CoreCompileInputs
 C:\Users\Mamet\source\repos\Translator\obj\Debug\xtUML1.csproj.CopyComplete
 C:\Users\Mamet\source\repos\Translator\obj\Debug\xtUML1.exe
 C:\Users\Mamet\source\repos\Translator\obj\Debug\xtUML1.pdb
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\bin\Debug\xtUML1.exe.config
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\bin\Debug\xtUML1.exe
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\bin\Debug\xtUML1.pdb
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\bin\Debug\Newtonsoft.Json.dll
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\bin\Debug\Newtonsoft.Json.xml
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.csproj.AssemblyReference.cache
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.Form1.resources
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.Properties.Resources.resources
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.csproj.GenerateResource.cache
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.csproj.CoreCompileInputs.cache
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.csproj.CopyComplete
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.exe
+C:\Users\khedive\source\repos\PKPL_PPPL\PPPL\Translator\obj\Debug\xtUML1.pdb
