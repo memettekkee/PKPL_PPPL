@@ -1106,8 +1106,13 @@ namespace xtUML1
             helpMessage.AppendLine("User Guide for Generating JSON Model into Java Programming Language");
             helpMessage.AppendLine();
             helpMessage.AppendLine("1. Open the desired JSON File by clicking Browse button");
-            helpMessage.AppendLine("2. After the code appeared in the box, click the Generate button to translate it to Java");
-            helpMessage.AppendLine("3. The Java Code will exist in the right box and click Export button to save it as Java file");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("2. Parse the file first by Clicking the Parse button");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("3. After the file successfully parsed, click the Generate button to translate it to Java");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("4. The Java Code will exist in the right box and click Export button to save it as Java file");
+            helpMessage.AppendLine();
 
             return helpMessage.ToString();
         }
