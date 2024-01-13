@@ -160,7 +160,7 @@
             this.btnSelect.Location = new System.Drawing.Point(50, 215);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(210, 75);
-            this.btnSelect.TabIndex = 15;
+            this.btnSelect.TabIndex = 1;
             this.btnSelect.Text = "Select File";
             this.btnSelect.UseVisualStyleBackColor = false;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click_1);
@@ -188,7 +188,7 @@
             this.btnSave.Location = new System.Drawing.Point(50, 905);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(210, 75);
-            this.btnSave.TabIndex = 17;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -202,7 +202,7 @@
             this.btnCopy.Location = new System.Drawing.Point(50, 790);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(210, 75);
-            this.btnCopy.TabIndex = 18;
+            this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = false;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
@@ -276,7 +276,7 @@
             this.btnParse.Location = new System.Drawing.Point(50, 330);
             this.btnParse.Name = "btnParse";
             this.btnParse.Size = new System.Drawing.Size(210, 75);
-            this.btnParse.TabIndex = 22;
+            this.btnParse.TabIndex = 2;
             this.btnParse.Text = "Parse";
             this.btnParse.UseVisualStyleBackColor = false;
             this.btnParse.Click += new System.EventHandler(this.btnParse_Click);
@@ -290,7 +290,7 @@
             this.btnTranslate.Location = new System.Drawing.Point(50, 560);
             this.btnTranslate.Name = "btnTranslate";
             this.btnTranslate.Size = new System.Drawing.Size(210, 75);
-            this.btnTranslate.TabIndex = 23;
+            this.btnTranslate.TabIndex = 3;
             this.btnTranslate.Text = "Translate";
             this.btnTranslate.UseVisualStyleBackColor = false;
             this.btnTranslate.Click += new System.EventHandler(this.btnTranslate_Click);

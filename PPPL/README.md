@@ -5,3 +5,5 @@ tambahan +---+
 Parsing udah
 UI udah
 Translet nya masih error
+
+Update = sisa button help kurang penjelasan

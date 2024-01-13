@@ -106,6 +106,7 @@ namespace xtUML1
             JArray jsonArray = this.ProcessJson(selectedFilePath);
 
             msgBox.Clear();
+            richTextBox2.Clear();
 
             CheckParsing15.Point1(this, jsonArray);
             CheckParsing15.Point2(this, jsonArray);
@@ -381,31 +382,31 @@ namespace xtUML1
             // yg kutandain klo mau di aktifin fitur check parse dlu baru translet itu dibuka komennya
 
             // bawah ini
-            
+
             //if (isBtnParseClicked) 
             //{
-                try
+            try
+            {
+                if (!string.IsNullOrEmpty(selectedFilePath) && File.Exists(selectedFilePath))
                 {
-                    if (!string.IsNullOrEmpty(selectedFilePath) && File.Exists(selectedFilePath))
-                    {
-                        sourceCodeBuilder.Clear();
-                        GenerateJava(selectedFilePath);
-                        msgBox.Text = File.ReadAllText(selectedFilePath);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please select a valid JSON file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    sourceCodeBuilder.Clear();
+                    GenerateJava(selectedFilePath);
+                    msgBox.Text = File.ReadAllText(selectedFilePath);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Error generating Java code: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a valid JSON file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error generating Java code: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             // sama bawah ini
 
             //}
 
-           
+
 
             //else
             //{
@@ -548,23 +549,23 @@ namespace xtUML1
 
             if (attribute.data_type != "state" && attribute.data_type != "inst_event" && attribute.data_type != "inst_ref" && attribute.data_type != "inst_ref_set" && attribute.data_type != "inst_ref_<timer>" && attribute.data_type != "inst_event")
             {
-                sourceCodeBuilder.AppendLine($"    private {dataType} {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {dataType} {attribute.attribute_name};");
             }
             else if (attribute.data_type == "state")
             {
-                sourceCodeBuilder.AppendLine($"    private {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {attribute.attribute_name};");
             }
             else if (attribute.data_type == "inst_ref_<timer>")
             {
-                sourceCodeBuilder.AppendLine($"    private {dataType} {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {dataType} {attribute.attribute_name};");
             }
             else if (attribute.data_type == "inst_ref")
             {
-                sourceCodeBuilder.AppendLine($"    private {attribute.related_class_name} {attribute.attribute_name}Ref;");
+                sourceCodeBuilder.AppendLine($"\tprivate {attribute.related_class_name} {attribute.attribute_name}Ref;");
             }
             else if (attribute.data_type == "inst_ref_set")
             {
-                sourceCodeBuilder.AppendLine($"    private {attribute.related_class_name} {attribute.attribute_name}RefSet = [];");
+                sourceCodeBuilder.AppendLine($"\tprivate {attribute.related_class_name} {attribute.attribute_name}RefSet = [];");
             }
             else if (attribute.data_type == "inst_event")
             {
@@ -594,9 +595,9 @@ namespace xtUML1
                     }
                 }
 
-                sourceCodeBuilder.AppendLine($"\n    private void {attribute.event_name}({cName} {cName}) {{");
-                sourceCodeBuilder.AppendLine($"        {cName}.{sName}();");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\n\tprivate void {attribute.event_name}({cName} {cName}) {{");
+                sourceCodeBuilder.AppendLine($"\t\t{cName}.{sName}();");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else
             {
@@ -629,7 +630,7 @@ namespace xtUML1
                 // Adjust data types as needed
                 string dataType = MapDataType(attribute.data_type);
 
-                sourceCodeBuilder.AppendLine($"     private {dataType} {attribute.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\tprivate {dataType} {attribute.attribute_name};");
             }
 
             // Check if associatedClass.@class is not null before iterating
@@ -639,11 +640,11 @@ namespace xtUML1
                 {
                     if (associatedClass.class_multiplicity == "1..1")
                     {
-                        sourceCodeBuilder.AppendLine($"    private {associatedClass.class_name} {associatedClass.class_name};");
+                        sourceCodeBuilder.AppendLine($"\tprivate {associatedClass.class_name} {associatedClass.class_name};");
                     }
                     else
                     {
-                        sourceCodeBuilder.AppendLine($"    private array {associatedClass.class_name}List;");
+                        sourceCodeBuilder.AppendLine($"\tprivate array {associatedClass.class_name}List;");
                     }
                 }
             }
@@ -758,19 +759,19 @@ namespace xtUML1
             {
                 if (attribute.data_type != "state" && attribute.data_type != "inst_ref_<timer>" && attribute.data_type != "inst_ref" && attribute.data_type != "inst_ref_set" && attribute.data_type != "inst_event")
                 {
-                    sourceCodeBuilder.AppendLine($"        this.{attribute.attribute_name} = {attribute.attribute_name};");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{attribute.attribute_name} = {attribute.attribute_name};");
                 }
                 else if (attribute.data_type == "inst_ref")
                 {
-                    sourceCodeBuilder.AppendLine($"        this.{attribute.attribute_name}Ref = {attribute.attribute_name}Ref;");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{attribute.attribute_name}Ref = {attribute.attribute_name}Ref;");
                 }
                 else if (attribute.data_type == "inst_ref_set")
                 {
-                    sourceCodeBuilder.AppendLine($"        this.{attribute.attribute_name}RefSet[] = {attribute.attribute_name}RefSet;");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{attribute.attribute_name}RefSet[] = {attribute.attribute_name}RefSet;");
                 }
                 else if (attribute.data_type == "inst_ref_<timer>")
                 {
-                    sourceCodeBuilder.AppendLine($"        this.{attribute.attribute_name} = {attribute.attribute_name}");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{attribute.attribute_name} = {attribute.attribute_name}");
                 }
             }
 
@@ -814,11 +815,11 @@ namespace xtUML1
                     int lastDotIndex = stateAttribute.default_value.LastIndexOf('.');
                     // Replace "status" with "state" and "aktif" with "active"
                     string stringValue = stateAttribute.default_value.Substring(lastDotIndex + 1);
-                    sourceCodeBuilder.AppendLine($"        this.{stateAttribute.attribute_name} = \"{stringValue}\";");
+                    sourceCodeBuilder.AppendLine($"\t\tthis.{stateAttribute.attribute_name} = \"{stringValue}\";");
                 }
             }
 
-            sourceCodeBuilder.AppendLine("}");
+            sourceCodeBuilder.AppendLine("\t}");
         }
 
         private void GenerateGetter(JsonData.Attribute1 getter)
@@ -827,30 +828,30 @@ namespace xtUML1
             if (getter.data_type != "state" && getter.data_type != "inst_ref_<timer>" && getter.data_type != "inst_ref" && getter.data_type != "inst_ref_set" && getter.data_type != "inst_event")
             {
                 string dataType = MapDataType(getter.data_type);
-                sourceCodeBuilder.AppendLine($"      public {dataType} get{getter.attribute_name}() {{"); // ini belom diubah
-                sourceCodeBuilder.AppendLine($"        this.{getter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic {dataType} get{getter.attribute_name}() {{"); // ini belom diubah
+                sourceCodeBuilder.AppendLine($"\t\tthis.{getter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (getter.data_type == "inst_ref_<timer>")
             {
                 string dataType = MapDataType(getter.data_type);
-                sourceCodeBuilder.AppendLine($"      public {dataType} get{getter.attribute_name}() {{");
-                sourceCodeBuilder.AppendLine($"        return this.{getter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic {dataType} get{getter.attribute_name}() {{");
+                sourceCodeBuilder.AppendLine($"\t\treturn this.{getter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (getter.data_type == "inst_ref")
             {
                 string dataType = MapDataType(getter.data_type);
-                sourceCodeBuilder.AppendLine($"      public {dataType} get{getter.attribute_name}Ref() {{");
-                sourceCodeBuilder.AppendLine($"        return this.{getter.attribute_name}Ref;");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic {dataType} get{getter.attribute_name}Ref() {{");
+                sourceCodeBuilder.AppendLine($"\t\treturn this.{getter.attribute_name}Ref;");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (getter.data_type == "inst_ref_set")
             {
                 string dataType = MapDataType(getter.data_type);
-                sourceCodeBuilder.AppendLine($"      public {dataType} get{getter.attribute_name}RefSet() {{");
-                sourceCodeBuilder.AppendLine($"        return this.{getter.attribute_name}RefSet;");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic {dataType} get{getter.attribute_name}RefSet() {{");
+                sourceCodeBuilder.AppendLine($"\t\treturn this.{getter.attribute_name}RefSet;");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (getter.data_type == "inst_event")
             {
@@ -864,28 +865,28 @@ namespace xtUML1
             if (setter.data_type != "state" && setter.data_type != "inst_ref_<timer>" && setter.data_type != "inst_ref" && setter.data_type != "inst_ref_set" && setter.data_type != "inst_event")
             {
                 string dataType = MapDataType(setter.data_type);
-                sourceCodeBuilder.AppendLine($"      public void set{setter.attribute_name}({dataType} {setter.attribute_name}) {{"); // ini ( String get() ) nya belom jadi
-                sourceCodeBuilder.AppendLine($"        this.{setter.attribute_name} = {setter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic void set{setter.attribute_name}({dataType} {setter.attribute_name}) {{"); // ini ( String get() ) nya belom jadi
+                sourceCodeBuilder.AppendLine($"\t\tthis.{setter.attribute_name} = {setter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (setter.data_type == "inst_ref_<timer>")
             {
-                sourceCodeBuilder.AppendLine($"      public void set{setter.attribute_name}(TIMER {setter.attribute_name}) {{");
-                sourceCodeBuilder.AppendLine($"        this.{setter.attribute_name} = {setter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic void set{setter.attribute_name}(TIMER {setter.attribute_name}) {{");
+                sourceCodeBuilder.AppendLine($"\t\tthis.{setter.attribute_name} = {setter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (setter.data_type == "inst_ref")
             {
                 //string dataType = MapDataType(setter.data_type);
-                sourceCodeBuilder.AppendLine($"      public void set{setter.attribute_name}Ref({setter.related_class_name} {setter.attribute_name}Ref) {{");
-                sourceCodeBuilder.AppendLine($"        this.{setter.attribute_name}Ref = {setter.attribute_name}Ref;");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic void set{setter.attribute_name}Ref({setter.related_class_name} {setter.attribute_name}Ref) {{");
+                sourceCodeBuilder.AppendLine($"\t\tthis.{setter.attribute_name}Ref = {setter.attribute_name}Ref;");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (setter.data_type == "inst_ref_set")
             {
-                sourceCodeBuilder.AppendLine($"      public void set{setter.attribute_name}RefSet({setter.related_class_name} {setter.attribute_name}) {{");
-                sourceCodeBuilder.AppendLine($"        this.{setter.attribute_name}RefSet[] = {setter.attribute_name};");
-                sourceCodeBuilder.AppendLine($"}}");
+                sourceCodeBuilder.AppendLine($"\tpublic void set{setter.attribute_name}RefSet({setter.related_class_name} {setter.attribute_name}) {{");
+                sourceCodeBuilder.AppendLine($"\t\tthis.{setter.attribute_name}RefSet[] = {setter.attribute_name};");
+                sourceCodeBuilder.AppendLine($"\t}}");
             }
             else if (setter.data_type == "inst_event")
             {
@@ -897,9 +898,9 @@ namespace xtUML1
         {
             if (getstate.data_type == "state")
             {
-                sourceCodeBuilder.AppendLine($"     public string GetState() {{");  // bagian ini nya belom
-                sourceCodeBuilder.AppendLine($"       this.state;");
-                sourceCodeBuilder.AppendLine($"}}\n");
+                sourceCodeBuilder.AppendLine($"\tpublic string GetState() {{");  // bagian ini nya belom
+                sourceCodeBuilder.AppendLine($"\t\tthis.state;");
+                sourceCodeBuilder.AppendLine($"\t}}\n");
             }
         }
 
@@ -913,9 +914,9 @@ namespace xtUML1
                     {
                         string methodName = $"{state.state_event[i]}";
 
-                        sourceCodeBuilder.AppendLine($"    public void {methodName}() {{");
-                        sourceCodeBuilder.AppendLine($"        this.{status} = '{state.state_value}';");
-                        sourceCodeBuilder.AppendLine($"    }}\n");
+                        sourceCodeBuilder.AppendLine($"\tpublic void {methodName}() {{");
+                        sourceCodeBuilder.AppendLine($"\t\tthis.{status} = '{state.state_value}';");
+                        sourceCodeBuilder.AppendLine($"\t}}\n");
                     }
                 }
             }
@@ -929,12 +930,12 @@ namespace xtUML1
             }
 
 
-            sourceCodeBuilder.AppendLine($"     public void Transition() {{");
-            sourceCodeBuilder.AppendLine($"          switch (this.{status}) {{");
+            sourceCodeBuilder.AppendLine($"\tpublic void Transition() {{");
+            sourceCodeBuilder.AppendLine($"\t\tswitch (this.{status}) {{");
             foreach (var states in state)
             {
-                sourceCodeBuilder.AppendLine($"               case '{states.state_name}':");
-                sourceCodeBuilder.AppendLine($"                    {states.action}");
+                sourceCodeBuilder.AppendLine($"\t\t\tcase '{states.state_name}':");
+                sourceCodeBuilder.AppendLine($"\t\t\t\t{states.action}");
 
                 if (states.transitions != null)
                 {
@@ -949,15 +950,15 @@ namespace xtUML1
                                 targetState = statess.state_event[0];
                             }
                         }
-                        sourceCodeBuilder.AppendLine($"                    if (this.{status} == '{transition.target_state}') {{");
-                        sourceCodeBuilder.AppendLine($"                         {targetState}();");
-                        sourceCodeBuilder.AppendLine($"                    }}");
+                        sourceCodeBuilder.AppendLine($"\t\t\t\tif (this.{status} == '{transition.target_state}') {{");
+                        sourceCodeBuilder.AppendLine($"\t\t\t\t\t{targetState}();");
+                        sourceCodeBuilder.AppendLine($"\t\t\t\t}}");
                     }
                 }
-                sourceCodeBuilder.AppendLine($"                    break;");
+                sourceCodeBuilder.AppendLine($"\t\t\t\tbreak;");
             }
-            sourceCodeBuilder.AppendLine($"          }}");
-            sourceCodeBuilder.AppendLine($"     }}");
+            sourceCodeBuilder.AppendLine($"\t\t}}");
+            sourceCodeBuilder.AppendLine($"\t}}");
             sourceCodeBuilder.Append($"\n");
         }
 
@@ -1071,7 +1072,7 @@ namespace xtUML1
                 case "integer":
                     return "int";
                 case "id":
-                    return "String (alphanumeric)"; // ini diganti
+                    return "String"; // alphanumeric saya jadikan string
                 case "string":
                     return "String";
                 case "bool":
@@ -1106,8 +1107,13 @@ namespace xtUML1
             helpMessage.AppendLine("User Guide for Generating JSON Model into Java Programming Language");
             helpMessage.AppendLine();
             helpMessage.AppendLine("1. Open the desired JSON File by clicking Browse button");
-            helpMessage.AppendLine("2. After the code appeared in the box, click the Generate button to translate it to Java");
-            helpMessage.AppendLine("3. The Java Code will exist in the right box and click Export button to save it as Java file");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("2. Parse the file first by Clicking the Parse button");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("3. After the file successfully parsed, click the Generate button to translate it to Java");
+            helpMessage.AppendLine();
+            helpMessage.AppendLine("4. The Java Code will exist in the right box and click Export button to save it as Java file");
+            helpMessage.AppendLine();
 
             return helpMessage.ToString();
         }
@@ -1175,6 +1181,6 @@ namespace xtUML1
             return;
         }
 
-     
+
     }
 }
