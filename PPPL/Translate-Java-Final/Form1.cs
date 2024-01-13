@@ -106,6 +106,7 @@ namespace xtUML1
             JArray jsonArray = this.ProcessJson(selectedFilePath);
 
             msgBox.Clear();
+            richTextBox2.Clear();
 
             CheckParsing15.Point1(this, jsonArray);
             CheckParsing15.Point2(this, jsonArray);
@@ -1071,7 +1072,7 @@ namespace xtUML1
                 case "integer":
                     return "int";
                 case "id":
-                    return "String (alphanumeric)"; // ini diganti
+                    return "String"; // alphanumeric saya jadikan string
                 case "string":
                     return "String";
                 case "bool":
